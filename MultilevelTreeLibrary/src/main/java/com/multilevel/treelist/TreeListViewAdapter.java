@@ -261,8 +261,9 @@ public abstract class TreeListViewAdapter extends BaseAdapter {
 	 * @return
 	 */
 	public List<Node> getAllNodes(){
-		if(mAllNodes == null)
+		if(mAllNodes == null) {
 			mAllNodes = new ArrayList<Node>();
+		}
 		return mAllNodes;
 	}
 
@@ -318,8 +319,9 @@ public abstract class TreeListViewAdapter extends BaseAdapter {
 	protected void setChecked(final Node node, boolean checked) {
 		node.setChecked(checked);
 		setChildChecked(node, checked);
-		if(node.getParent()!=null)
+		if(node.getParent()!=null) {
 			setNodeParentChecked(node.getParent(), checked);
+		}
 		notifyDataSetChanged();
 	}
 	/**
@@ -341,8 +343,9 @@ public abstract class TreeListViewAdapter extends BaseAdapter {
 	private void setNodeParentChecked(Node node,boolean checked){
 		if(checked){
 			node.setChecked(checked);
-			if(node.getParent()!=null)
+			if(node.getParent()!=null) {
 				setNodeParentChecked(node.getParent(), checked);
+			}
 		}else{
 			List<Node> childrens = node.getChildren();
 			boolean isChecked = false;
@@ -355,8 +358,9 @@ public abstract class TreeListViewAdapter extends BaseAdapter {
 			if(!isChecked){
 				node.setChecked(checked);
 			}
-			if(node.getParent()!=null)
+			if(node.getParent()!=null) {
 				setNodeParentChecked(node.getParent(), checked);
+			}
 		}
 	}
 

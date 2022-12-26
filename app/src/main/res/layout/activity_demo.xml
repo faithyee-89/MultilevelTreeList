@@ -27,10 +27,15 @@
         android:text="移除数据"/>
 
 
-    <android.support.v7.widget.RecyclerView
+<!--    <android.support.v7.widget.RecyclerView-->
+<!--        android:id="@+id/recyclerview"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"/>-->
+
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
     <ListView
         android:id="@+id/lv_tree"

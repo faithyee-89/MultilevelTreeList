@@ -1,9 +1,12 @@
 package com.multilevel.treelist;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +84,7 @@ public abstract class TreeRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
 
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder,final int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Node node = mNodes.get(position);
 
         // 设置内边距
@@ -295,8 +298,9 @@ public abstract class TreeRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
     protected void setChecked(final Node node, boolean checked) {
         node.setChecked(checked);
         setChildChecked(node, checked);
-        if(node.getParent()!=null)
+        if(node.getParent()!=null) {
             setNodeParentChecked(node.getParent(), checked);
+        }
         notifyDataSetChanged();
     }
     /**
@@ -318,8 +322,9 @@ public abstract class TreeRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
     private void setNodeParentChecked(Node node,boolean checked){
         if(checked){
             node.setChecked(checked);
-            if(node.getParent()!=null)
+            if(node.getParent()!=null) {
                 setNodeParentChecked(node.getParent(), checked);
+            }
         }else{
             List<Node> childrens = node.getChildren();
             boolean isChecked = false;
@@ -332,8 +337,9 @@ public abstract class TreeRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
             if(!isChecked){
                 node.setChecked(checked);
             }
-            if(node.getParent()!=null)
+            if(node.getParent()!=null) {
                 setNodeParentChecked(node.getParent(), checked);
+            }
         }
     }
 

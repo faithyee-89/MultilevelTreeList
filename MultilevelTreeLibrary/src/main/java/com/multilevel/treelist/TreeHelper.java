@@ -84,8 +84,9 @@ public class TreeHelper {
     private static List<Node> getRootNodes(List<Node> nodes) {
         List<Node> root = new ArrayList<Node>();
         for (Node node : nodes) {
-            if (node.isRoot())
+            if (node.isRoot()) {
                 root.add(node);
+            }
         }
         return root;
     }
@@ -101,8 +102,9 @@ public class TreeHelper {
             node.setExpand(true);
         }
 
-        if (node.isLeaf())
+        if (node.isLeaf()) {
             return;
+        }
         for (int i = 0; i < node.getChildren().size(); i++) {
             addNode(nodes, node.getChildren().get(i), defaultExpandLeval,
                     currentLevel + 1);

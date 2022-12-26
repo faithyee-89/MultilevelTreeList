@@ -1,11 +1,12 @@
 package com.treelist.view;
 
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.multilevel.treelist.Node;
 import com.multilevel.treelist.TreeListViewAdapter;
@@ -50,8 +51,9 @@ public class ListViewActivity extends BaseActivity {
     public void click(View v){
 
         List<Node> mlist = new ArrayList<>();
-        if (num == 0)
+        if (num == 0) {
             mlist.add(new Node("22","0","我是添加的root节点",new FileNode()));
+        }
 
         //添加一个根节点
         mlist.add(new Node("223","0","我也是添加的root节点",new FileNode()));
@@ -81,8 +83,9 @@ public class ListViewActivity extends BaseActivity {
             }
         }
         String strNodesName = sb.toString();
-        if (!TextUtils.isEmpty(strNodesName))
+        if (!TextUtils.isEmpty(strNodesName)) {
             Toast.makeText(this, strNodesName.substring(0, strNodesName.length()-1),Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void delete(View view) {
