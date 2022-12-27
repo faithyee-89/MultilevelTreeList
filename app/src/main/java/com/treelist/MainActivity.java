@@ -4,7 +4,6 @@ import static com.treelist.MyTreeRecyclerAdapter.ITEM_TYPE_FILE;
 import static com.treelist.MyTreeRecyclerAdapter.ITEM_TYPE_FOLDER;
 
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -39,37 +38,14 @@ public class MainActivity extends AppCompatActivity {
         mTree.setLayoutManager(new LinearLayoutManager(this));
         mTree.setAdapter(mAdapter);
         mAdapter.addData(initDatas());
-
-        // TODO: 2022/12/27 全部选中
-        // TODO: 2022/12/27 点击效果
-        // TODO: 2022/12/27 根目录显示设备数
     }
 
-
-    /**
-     * 显示选中数据
-     */
-//    public void clickShow(View v) {
-//        StringBuilder sb = new StringBuilder();
-//        final List<Node> allNodes = mAdapter.getAllNodes();
-//        for (int i = 0; i < allNodes.size(); i++) {
-//            if (allNodes.get(i).isChecked()) {
-//                sb.append(allNodes.get(i).getName() + ",");
-//            }
-//        }
-//        String strNodesName = sb.toString();
-//        if (!TextUtils.isEmpty(strNodesName)) {
-//            Toast.makeText(this, strNodesName.substring(0, strNodesName.length() - 1), Toast.LENGTH_SHORT).show();
-//        }
-//    }
-//
 //    public void delete(View view) {
 //        if (mAdapter.getAllNodes().size() > 0) {
 //            mAdapter.removeData(mAdapter.getAllNodes().get(mAdapter.getAllNodes().size() - 1));
 //        }
 //    }
     public List<Node> initDatas() {
-        // id , pid , label , 其他属性
         mDatas.add(new Node("192", "0", "中控", ITEM_TYPE_FOLDER));
         mDatas.add(new Node("196", "184", "投影机分组195", ITEM_TYPE_FOLDER));
         mDatas.add(new Node("197", "184", "投影机分组196", ITEM_TYPE_FOLDER));
@@ -101,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
         mDatas.add(new Node("4", "221", "设备4K(TCP)-125", ITEM_TYPE_FILE));
         mDatas.add(new Node("5", "222", "设备L5(UDP)-150", ITEM_TYPE_FILE));
         mDatas.add(new Node("6", "222", "设备L1+(TCP)-200", ITEM_TYPE_FILE));
-
         return mDatas;
     }
 }

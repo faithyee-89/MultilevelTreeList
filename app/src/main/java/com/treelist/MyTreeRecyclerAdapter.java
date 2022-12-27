@@ -13,6 +13,7 @@ import com.multilevel.treelist.Node;
 import com.multilevel.treelist.TreeRecyclerAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by zhangke on 2017-1-14.
@@ -29,6 +30,18 @@ public class MyTreeRecyclerAdapter extends TreeRecyclerAdapter {
         inflater = LayoutInflater.from(context);
     }
 
+    public int traverseChildren(Node node, int deviceNum) {
+        List<Node> children = node.getChildren();
+        for (Node child : children) {
+            if (child.getType() == ITEM_TYPE_FILE) {
+                deviceNum ++;
+            } else {
+                deviceNum = traverseChildren(child, deviceNum);
+            }
+        }
+        return deviceNum;
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
@@ -37,7 +50,12 @@ public class MyTreeRecyclerAdapter extends TreeRecyclerAdapter {
             return new TypeViewHolder(view) {
                 @Override
                 public void bindHolder(Node node, int position, TypeViewHolder viewHolder) {
-                    this.setText(R.id.name_tv, node.getName());
+                    int deviceNum = 0;
+                    deviceNum = traverseChildren(node, deviceNum);
+
+                    //显示设备数
+                    this.setText(R.id.name_tv, node.getName() + " (" + deviceNum + ")");
+
                     if (node.isExpand()) {
                         this.setImageResource(R.id.arrow_iv, R.mipmap.ic_arrow_up_white);
                     } else {
@@ -48,7 +66,7 @@ public class MyTreeRecyclerAdapter extends TreeRecyclerAdapter {
                             node.setChecked(false);
                             setChildChecked(node, false);
                             viewHolder.setCheckBoxCheckState(R.id.cb_select, false);
-                        }else {
+                        } else {
                             node.setChecked(true);
                             setChildChecked(node, true);
                             viewHolder.setCheckBoxCheckState(R.id.cb_select, true);
@@ -64,11 +82,11 @@ public class MyTreeRecyclerAdapter extends TreeRecyclerAdapter {
                 @Override
                 public void bindHolder(Node node, int position, TypeViewHolder viewHolder) {
                     this.setText(R.id.name_tv, node.getName());
-                    this.getView(R.id.rl_select).setOnClickListener(v -> {
+                    this.getView(R.id.ll_content).setOnClickListener(v -> {
                         if (node.isChecked()) {
                             node.setChecked(false);
                             viewHolder.setCheckBoxCheckState(R.id.cb_select, false);
-                        }else {
+                        } else {
                             node.setChecked(true);
                             viewHolder.setCheckBoxCheckState(R.id.cb_select, true);
                         }
@@ -81,7 +99,7 @@ public class MyTreeRecyclerAdapter extends TreeRecyclerAdapter {
 
     @Override
     public void onBindViewHolder(final Node node, RecyclerView.ViewHolder holder, int position) {
-        ((TypeViewHolder) holder).bindHolder(mNodes.get(position), position, (TypeViewHolder)holder);
+        ((TypeViewHolder) holder).bindHolder(mNodes.get(position), position, (TypeViewHolder) holder);
         // 设置内边距
         holder.itemView.setPadding(node.getLevel() * dip2px(37), 0, 0, 0);
     }
