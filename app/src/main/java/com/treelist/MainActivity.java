@@ -4,6 +4,7 @@ import static com.treelist.MyTreeRecyclerAdapter.ITEM_TYPE_FILE;
 import static com.treelist.MyTreeRecyclerAdapter.ITEM_TYPE_FOLDER;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,18 +23,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_demo);
-        RecyclerView mTree = (RecyclerView) findViewById(R.id.list);
-        mTree.setLayoutManager(new LinearLayoutManager(this));
-        //第四个参数  默认展开层级数 0为不展开
+        setContentView(R.layout.activity_main);
         mAdapter = new MyTreeRecyclerAdapter(this);
-
+        RecyclerView mTree = (RecyclerView) findViewById(R.id.list);
+        findViewById(R.id.tv_all).setOnClickListener(v -> {
+            //全选/全不选
+        });
+        mTree.setLayoutManager(new LinearLayoutManager(this));
         mTree.setAdapter(mAdapter);
         mAdapter.addData(initDatas());
 
-        // TODO: 2022/12/27 checkbox与选中挂钩 
-        // TODO: 2022/12/27 全部选中 
+        // TODO: 2022/12/27 全部选中
         // TODO: 2022/12/27 点击效果
+        // TODO: 2022/12/27 根目录显示设备数
     }
 
 

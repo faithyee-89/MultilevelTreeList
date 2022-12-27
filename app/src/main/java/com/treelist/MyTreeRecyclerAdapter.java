@@ -31,26 +31,49 @@ public class MyTreeRecyclerAdapter extends TreeRecyclerAdapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = null;
+        View view;
         if (viewType == ITEM_TYPE_FOLDER) {
-            view = this.inflater.inflate(R.layout.item_select_device_rv_level_0, parent, false);
+            view = this.inflater.inflate(R.layout.item_select_device_rv_folder_type, parent, false);
             return new TypeViewHolder(view) {
                 @Override
-                public void bindHolder(Node node, int position) {
+                public void bindHolder(Node node, int position, TypeViewHolder viewHolder) {
                     this.setText(R.id.name_tv, node.getName());
                     if (node.isExpand()) {
                         this.setImageResource(R.id.arrow_iv, R.mipmap.ic_arrow_up_white);
                     } else {
                         this.setImageResource(R.id.arrow_iv, R.mipmap.ic_arrow_down_white);
                     }
+                    this.getView(R.id.rl_select).setOnClickListener(v -> {
+                        if (node.isChecked()) {
+                            node.setChecked(false);
+                            setChildChecked(node, false);
+                            viewHolder.setCheckBoxCheckState(R.id.cb_select, false);
+                        }else {
+                            node.setChecked(true);
+                            setChildChecked(node, true);
+                            viewHolder.setCheckBoxCheckState(R.id.cb_select, true);
+                        }
+                        notifyDataSetChanged();
+                    });
+                    this.setCheckBoxCheckState(R.id.cb_select, node.isChecked());
                 }
             };
         } else {
-            view = this.inflater.inflate(R.layout.item_select_device_rv_level_3, parent, false);
+            view = this.inflater.inflate(R.layout.item_select_device_rv_file_type, parent, false);
             return new TypeViewHolder(view) {
                 @Override
-                public void bindHolder(Node node, int position) {
+                public void bindHolder(Node node, int position, TypeViewHolder viewHolder) {
                     this.setText(R.id.name_tv, node.getName());
+                    this.getView(R.id.rl_select).setOnClickListener(v -> {
+                        if (node.isChecked()) {
+                            node.setChecked(false);
+                            viewHolder.setCheckBoxCheckState(R.id.cb_select, false);
+                        }else {
+                            node.setChecked(true);
+                            viewHolder.setCheckBoxCheckState(R.id.cb_select, true);
+                        }
+                    });
+                    this.setCheckBoxCheckState(R.id.cb_select, node.isChecked());
                 }
             };
         }
@@ -58,7 +81,7 @@ public class MyTreeRecyclerAdapter extends TreeRecyclerAdapter {
 
     @Override
     public void onBindViewHolder(final Node node, RecyclerView.ViewHolder holder, int position) {
-        ((TypeViewHolder) holder).bindHolder(mNodes.get(position), position);
+        ((TypeViewHolder) holder).bindHolder(mNodes.get(position), position, (TypeViewHolder)holder);
         // 设置内边距
         holder.itemView.setPadding(node.getLevel() * dip2px(37), 0, 0, 0);
     }

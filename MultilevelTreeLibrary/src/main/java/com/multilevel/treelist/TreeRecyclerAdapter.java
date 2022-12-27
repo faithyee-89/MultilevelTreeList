@@ -6,6 +6,8 @@ import android.text.TextUtils;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -392,6 +394,12 @@ public abstract class TreeRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
             return this;
         }
 
+        public TypeViewHolder setCheckBoxCheckState(int viewId, boolean ischeck) {
+            CheckBox checkBox = getView(viewId);
+            checkBox.setChecked(ischeck);
+            return this;
+        }
+
         public TypeViewHolder setVisible(int viewId, int visible) {
             View view = getView(viewId);
             view.setVisibility(visible);
@@ -404,7 +412,7 @@ public abstract class TreeRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
             return this;
         }
 
-        public abstract void bindHolder(Node node, int position);
+        public abstract void bindHolder(Node node, int position, TypeViewHolder viewHolder);
     }
 
     public abstract void onBindViewHolder(Node node, RecyclerView.ViewHolder holder, final int position);
