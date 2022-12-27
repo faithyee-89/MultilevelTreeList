@@ -1,47 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".view.RecyclerViewActivity">
+    android:background="#1F1F20"
+    android:paddingTop="40.5dp">
 
-    <Button
-        android:onClick="click"
-        android:textColor="#000"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@drawable/search_device_bg"
+        android:id="@+id/rl_search"
+        android:layout_height="37.5dp"
+        android:layout_marginHorizontal="17.5dp"
+        android:layout_marginTop="7dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="添加数据"/>
-    <Button
-        android:onClick="clickShow"
-        android:textColor="#000"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="显示选中数据"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
 
-    <Button
-        android:onClick="delete"
-        android:textColor="#000"
-        android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/iv_search"
+            android:layout_centerVertical="true"
+            android:layout_height="16.23dp"
+            android:layout_marginLeft="24.5dp"
+            android:layout_width="17dp"
+            android:src="@mipmap/ic_phone_search_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/ed_search"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:background="@null"
+            android:hint="搜索投影机/分组"
+            android:id="@+id/ed_search"
+            android:imeOptions="actionSearch"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="7.5dp"
+            android:layout_marginRight="24.5dp"
+            android:layout_width="0dp"
+            android:lines="1"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="#fff"
+            android:textColorHint="#ABBDD5"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_search"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toRightOf="@id/iv_search"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_search" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <TextView
+        android:id="@+id/tv_type"
         android:layout_height="wrap_content"
-        android:text="移除数据"/>
+        android:layout_marginLeft="21.5dp"
+        android:layout_marginTop="15.5dp"
+        android:layout_width="wrap_content"
+        android:text="设备类型"
+        android:textColor="#ABBDD5"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rl_search" />
 
+    <ImageView
+        android:id="@+id/iv_type"
+        android:layout_height="3.74dp"
+        android:layout_marginLeft="10.5dp"
+        android:layout_width="7dp"
+        android:src="@mipmap/ic_arrow_down_white"
+        app:layout_constraintBottom_toBottomOf="@id/tv_type"
+        app:layout_constraintLeft_toRightOf="@id/tv_type"
+        app:layout_constraintTop_toTopOf="@id/tv_type" />
 
-<!--    <android.support.v7.widget.RecyclerView-->
-<!--        android:id="@+id/recyclerview"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"/>-->
+    <TextView
+        android:id="@+id/tv_state"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="27dp"
+        android:layout_width="wrap_content"
+        android:text="设备状态"
+        android:textColor="#ABBDD5"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_type"
+        app:layout_constraintLeft_toRightOf="@id/iv_type"
+        app:layout_constraintTop_toTopOf="@id/tv_type" />
+
+    <ImageView
+        android:id="@+id/iv_state"
+        android:layout_height="3.74dp"
+        android:layout_marginLeft="10.5dp"
+        android:layout_width="7dp"
+        android:src="@mipmap/ic_arrow_down_white"
+        app:layout_constraintBottom_toBottomOf="@id/tv_type"
+        app:layout_constraintLeft_toRightOf="@id/tv_state"
+        app:layout_constraintTop_toTopOf="@id/tv_type" />
+
+    <TextView
+        android:background="@drawable/control_device_state_tab_bg_selected"
+        android:id="@+id/tv_all"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="17dp"
+        android:layout_width="wrap_content"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5.5dp"
+        android:text="全部"
+        android:textColor="#fff"
+        android:textSize="10sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_type" />
+
+    <TextView
+        android:background="@drawable/control_device_state_tab_bg"
+        android:id="@+id/tv_lately"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="5.5dp"
+        android:text="最近选择(10)"
+        android:textColor="#fff"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_all"
+        app:layout_constraintLeft_toRightOf="@id/tv_all"
+        app:layout_constraintTop_toTopOf="@id/tv_all" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
+        android:id="@+id/list"
+        android:layout_height="0dp"
+        android:layout_marginTop="26dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:overScrollMode="never"
+        app:layoutManager="LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_all" />
 
-    <ListView
-        android:id="@+id/lv_tree"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:cacheColorHint="@android:color/transparent"
-        android:divider="#aaa"
-        android:dividerHeight="1px"/>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+

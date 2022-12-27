@@ -31,6 +31,11 @@ public class Node<T,B> {
     private int level;
 
     /**
+     * node的类型
+     */
+    private int type;
+
+    /**
      * 是否展开
      */
     private boolean isExpand = false;
@@ -77,6 +82,14 @@ public class Node<T,B> {
         this.pId = pId;
         this.name = name;
         this.bean = bean;
+    }
+
+    public Node(T id, T pId, String name,int type) {
+        super();
+        this.id = id;
+        this.pId = pId;
+        this.name = name;
+        this.type = type;
     }
 
 
@@ -126,6 +139,10 @@ public class Node<T,B> {
 
     public boolean isExpand() {
         return isExpand;
+    }
+
+    public int getType() {
+        return type;
     }
 
     public List<Node> getChildren() {

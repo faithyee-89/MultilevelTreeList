@@ -5,15 +5,6 @@
     android:gravity="center">
 
     <Button
-        android:onClick="goListView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ListViewTree"
-        android:textColor="#000"
-        android:textAllCaps="false"
-        android:textSize="20sp" />
-
-    <Button
         android:onClick="goRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
