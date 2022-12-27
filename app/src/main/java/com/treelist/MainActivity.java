@@ -19,6 +19,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     protected List<Node> mDatas = new ArrayList<>();
     private TreeRecyclerAdapter mAdapter;
+    private boolean checkAll = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,12 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView mTree = (RecyclerView) findViewById(R.id.list);
         findViewById(R.id.tv_all).setOnClickListener(v -> {
             //全选/全不选
+            List<Node> allNodes = mAdapter.getAllNodes();
+            for (Node node : allNodes) {
+                node.setChecked(!checkAll);
+            }
+            checkAll = !checkAll;
+            mAdapter.notifyDataSetChanged();
         });
         mTree.setLayoutManager(new LinearLayoutManager(this));
         mTree.setAdapter(mAdapter);
